@@ -82,6 +82,7 @@ const registerRoute = (navConfig) => {
       }
     });
   });
+
   function addRoute(page, lang, index) {
     const component = page.path === '/changelog'
       ? load(lang, 'changelog')
@@ -113,26 +114,34 @@ const generateMiscRoutes = function(lang) {
     children: [{
       path: 'design', // 设计原则
       name: 'guide-design' + lang,
-      meta: { lang },
+      meta: {
+        lang
+      },
       component: load(lang, 'design')
     }, {
       path: 'nav', // 导航
       name: 'guide-nav' + lang,
-      meta: { lang },
+      meta: {
+        lang
+      },
       component: load(lang, 'nav')
     }]
   };
 
   let resourceRoute = {
     path: `/${ lang }/resource`, // 资源
-    meta: { lang },
+    meta: {
+      lang
+    },
     name: 'resource' + lang,
     component: load(lang, 'resource')
   };
 
   let indexRoute = {
     path: `/${ lang }`, // 首页
-    meta: { lang },
+    meta: {
+      lang
+    },
     name: 'home' + lang,
     component: load(lang, 'index')
   };
@@ -167,5 +176,6 @@ route = route.concat([{
   path: '*',
   redirect: defaultPath
 }]);
+console.log('route', route);
 
 export default route;

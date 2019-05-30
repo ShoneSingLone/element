@@ -24,6 +24,7 @@ Vue.component('main-header', MainHeader);
 Vue.component('side-nav', SideNav);
 Vue.component('footer-nav', FooterNav);
 
+console.log('routes', routes);
 const router = new VueRouter({
   mode: 'hash',
   base: __dirname,

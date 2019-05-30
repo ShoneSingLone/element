@@ -1,0 +1,8 @@
+@import "mixins/mixins";
+@import "common/var";
+
+@include b(c-form-item) {
+    .red {
+        background-color: red;
+    }
+}
