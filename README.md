@@ -1,3 +1,29 @@
+# 说明
+
+> - [ElementUI的构建流程](https://juejin.im/post/5b9e8e396fb9a05d09654387)
+> - [前端入门->makefile](https://segmentfault.com/a/1190000004437816#articleHeader11)
+
+## 基本操作
+
+```bash
+├─build // 构建相关的脚本和配置
+├─examples // 用于展示Element组件的demo
+├─lib // 构建后生成的文件，发布到npm包
+├─packages // 组件代码
+├─src // 引入组件的入口文件
+├─test // 测试代码
+├─Makefile // 构建文件
+├─components.json // ****组件列表
+└─package.json
+```
+
+1. **yarn进行依赖安装**
+1. `npm run build:file`生成目标文件(`npm run dev`的前置条件)
+   1. `npm run dev`可以通过webpack-dev-sever在本地运行Element官网的demo。
+
+## 新建组件
+
+
 <p align="center">
   <img src="https://cdn.rawgit.com/ElemeFE/element/dev/element_logo.svg">
 </p>
