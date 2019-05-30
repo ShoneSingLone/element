@@ -1,6 +1,14 @@
 <template>
   <div style="margin: 20px;">
-    <el-c-form :options="formOptions">
+    <el-c-form :options="formOptions" class="panel">
+      <el-c-form-item :options="formItemOptions1"></el-c-form-item>
+      <el-c-form-item :options="formItemOptions2"></el-c-form-item>
+      <el-c-form-item :options="formItemOptions3"></el-c-form-item>
+      <el-c-form-item :options="formItemOptions4"></el-c-form-item>
+      <el-c-form-item :options="formItemOptions1"></el-c-form-item>
+      <el-c-form-item :options="formItemOptions2"></el-c-form-item>
+      <el-c-form-item :options="formItemOptions3"></el-c-form-item>
+      <el-c-form-item :options="formItemOptions4"></el-c-form-item>
       <el-c-form-item :options="formItemOptions1"></el-c-form-item>
       <el-c-form-item :options="formItemOptions2"></el-c-form-item>
       <el-c-form-item :options="formItemOptions3"></el-c-form-item>
@@ -15,7 +23,7 @@ export default {
     return {
       input: "Hello Element UI!",
       formOptions: { ref: "form", model: "form", "label-width": "80px" },
-      formItemOptions1: { type: "input", label: "hehe", model: "form.name" },
+      formItemOptions1: { type: "select", label: "hehe", model: "form.name" },
       formItemOptions2: {
         type: "input",
         label: "活动名称",
@@ -36,6 +44,7 @@ export default {
     };
   },
   methods: {
+    change() {},
     onSubmit() {
       console.log("submit!");
     }

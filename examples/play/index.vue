@@ -34,3 +34,30 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+html,
+body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 10px;
+}
+.el-container {
+  height: 100%;
+  width: 100%;
+}
+.el-tree-node__content {
+  background-color: transparent;
+}
+.el-aside {
+  background-color: transparent;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
+</style>
