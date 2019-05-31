@@ -71,5 +71,13 @@
   "timeline": "./packages/timeline/index.js",
   "timeline-item": "./packages/timeline-item/index.js",
   "c-form-item": "./packages/c-form-item/index.js",
-  "c-form": "./packages/c-form/index.js"
+  "c-form": "./packages/c-form/index.js",
+  "link": "./packages/link/index.js",
+  "divider": "./packages/divider/index.js",
+  "image": "./packages/image/index.js",
+  "calendar": "./packages/calendar/index.js",
+  "backtop": "./packages/backtop/index.js",
+  "infiniteScroll": "./packages/infiniteScroll/index.js",
+  "page-header": "./packages/page-header/index.js",
+  "cascader-panel": "./packages/cascader-panel/index.js"
 }
