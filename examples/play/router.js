@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Form from './pages/form/form.vue';
+import Table from './pages/table/table.vue';
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,10 @@ let router = new VueRouter({
     path: '/form',
     name: 'form',
     component: Form
+  },{
+    path: '/table',
+    name: 'table',
+    component: Table
   }]
 });
 
