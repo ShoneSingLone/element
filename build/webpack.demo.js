@@ -43,21 +43,48 @@ const webpackConfig = {
     children: false
   },
   module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.(vue|jsx?)$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      },
-      {
-        test: /\.(jsx?|babel|es6)$/,
-        include: process.cwd(),
-        exclude: config.jsexclude,
-        loader: 'babel-loader'
-      },
-      {
-        test: /\.vue$/,
+    rules: [{
+      enforce: 'pre',
+      test: /\.(vue|jsx?)$/,
+      exclude: /node_modules/,
+      loader: 'eslint-loader'
+    },
+    {
+      test: /\.(jsx?|babel|es6)$/,
+      include: process.cwd(),
+      exclude: config.jsexclude,
+      loader: 'babel-loader'
+    },
+    {
+      test: /\.vue$/,
+      loader: 'vue-loader',
+      options: {
+        compilerOptions: {
+          preserveWhitespace: false
+        }
+      }
+    },
+    {
+      test: /\.(scss|css)$/,
+      use: [
+        isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+        'css-loader',
+        'sass-loader'
+        /*          {
+                    loader: 'style-resources-loader',
+                    options: {
+                      patterns: [
+                        path.resolve(process.cwd(), './packages/theme-chalk/src/mixins/mixins.scss'),
+                        path.resolve(process.cwd(), './packages/theme-chalk/src/common/var.scss')
+                      ]
+                    }
+                  }
+           */
+      ]
+    },
+    {
+      test: /\.md$/,
+      use: [{
         loader: 'vue-loader',
         options: {
           compilerOptions: {
@@ -66,38 +93,19 @@ const webpackConfig = {
         }
       },
       {
-        test: /\.(scss|css)$/,
-        use: [
-          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
-      },
-      {
-        test: /\.md$/,
-        use: [
-          {
-            loader: 'vue-loader',
-            options: {
-              compilerOptions: {
-                preserveWhitespace: false
-              }
-            }
-          },
-          {
-            loader: path.resolve(__dirname, './md-loader/index.js')
-          }
-        ]
-      },
-      {
-        test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
-        loader: 'url-loader',
-        // todo: 这种写法有待调整
-        query: {
-          limit: 10000,
-          name: path.posix.join('static', '[name].[hash:7].[ext]')
-        }
+        loader: path.resolve(__dirname, './md-loader/index.js')
       }
+      ]
+    },
+    {
+      test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
+      loader: 'url-loader',
+      // todo: 这种写法有待调整
+      query: {
+        limit: 10000,
+        name: path.posix.join('static', '[name].[hash:7].[ext]')
+      }
+    }
     ]
   },
   plugins: [
@@ -107,9 +115,9 @@ const webpackConfig = {
       filename: './index.html',
       favicon: './examples/favicon.ico'
     }),
-    new CopyWebpackPlugin([
-      { from: 'examples/versions.json' }
-    ]),
+    new CopyWebpackPlugin([{
+      from: 'examples/versions.json'
+    }]),
     new ProgressBarPlugin(),
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({

@@ -261,6 +261,14 @@
               "title": "Timeline 时间线"
             },
             {
+              "path": "/c-form-item",
+              "title": "CFormItem"
+            },
+            {
+              "path": "/c-form",
+              "title": "CForm"
+            },
+            {
               "path": "/divider",
               "title": "Divider 分割线"
             },
@@ -545,6 +553,14 @@
             {
               "path": "/timeline",
               "title": "Timeline"
+            },
+            {
+              "path": "/c-form-item",
+              "title": "CFormItem"
+            },
+            {
+              "path": "/c-form",
+              "title": "CForm"
             },
             {
               "path": "/divider",
@@ -833,6 +849,14 @@
               "title": "Timeline"
             },
             {
+              "path": "/c-form-item",
+              "title": "CFormItem"
+            },
+            {
+              "path": "/c-form",
+              "title": "CForm"
+            },
+            {
               "path": "/divider",
               "title": "Divider"
             },
@@ -1117,6 +1141,14 @@
             {
               "path": "/timeline",
               "title": "Timeline"
+            },
+            {
+              "path": "/c-form-item",
+              "title": "CFormItem"
+            },
+            {
+              "path": "/c-form",
+              "title": "CForm"
             },
             {
               "path": "/divider",
