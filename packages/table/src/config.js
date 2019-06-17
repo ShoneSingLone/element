@@ -90,6 +90,13 @@ export const cellForced = {
 export function defaultRenderCell(h, { row, column, $index }) {
   const property = column.property;
   const value = property && getPropByPath(row, property).v;
+  if (column && column._options) {
+    let options = column._options;
+    if (options.dictType) {
+      console.log((row, property, options.dictType, value));
+      return window.Vue && window.Vue.convertDict && window.Vue.convertDict(row, property, options.dictType, value) || value;
+    }
+  }
   if (column && column.formatter) {
     return column.formatter(row, column, value, $index);
   }

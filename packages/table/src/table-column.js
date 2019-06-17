@@ -1,5 +1,15 @@
-import { cellStarts, cellForced, defaultRenderCell, treeCellPrefix } from './config';
-import { mergeOptions, parseWidth, parseMinWidth, compose } from './util';
+import {
+  cellStarts,
+  cellForced,
+  defaultRenderCell,
+  treeCellPrefix
+} from './config';
+import {
+  mergeOptions,
+  parseWidth,
+  parseMinWidth,
+  compose
+} from './util';
 import ElCheckbox from 'element-ui/packages/checkbox';
 
 let columnIdSeed = 1;
@@ -8,6 +18,10 @@ export default {
   name: 'ElTableColumn',
 
   props: {
+    /* options  传参方便更改*/
+    options: {
+      type: Object
+    },
     type: {
       type: String,
       default: 'default'
@@ -102,7 +116,7 @@ export default {
 
   methods: {
     getPropsData(...props) {
-      return props.reduce((prev, cur) => {
+      let res = props.reduce((prev, cur) => {
         if (Array.isArray(cur)) {
           cur.forEach((key) => {
             prev[key] = this[key];
@@ -110,6 +124,7 @@ export default {
         }
         return prev;
       }, {});
+      return res;
     },
 
     getColumnElIndex(children, child) {
@@ -159,9 +174,9 @@ export default {
       // TODO: 这里的实现调整
       if (column.type === 'expand') {
         // 对于展开行，renderCell 不允许配置的。在上一步中已经设置过，这里需要简单封装一下。
-        column.renderCell = (h, data) => (<div class="cell">
-          { originRenderCell(h, data) }
-        </div>);
+        column.renderCell = (h, data) => (<div class="cell" >{
+          originRenderCell(h, data)
+        } </div>);
         this.owner.renderExpanded = (h, data) => {
           return this.$scopedSlots.default
             ? this.$scopedSlots.default(data)
@@ -184,12 +199,17 @@ export default {
           };
           if (column.showOverflowTooltip) {
             props.class += ' el-tooltip';
-            props.style = {width: (data.column.realWidth || data.column.width) - 1 + 'px'};
+            props.style = {
+              width: (data.column.realWidth || data.column.width) - 1 + 'px'
+            };
           }
-          return (<div { ...props }>
-            { prefix }
-            { children }
-          </div>);
+
+          return (
+            <div {...props} >
+              { prefix }
+              { children }
+            </div>
+          );
         };
       }
       return column;
@@ -213,6 +233,7 @@ export default {
         const columnKey = aliases[key];
 
         this.$watch(key, (newVal) => {
+          console.log('$watch', key, newVal);
           this.columnConfig[columnKey] = newVal;
         });
       });
@@ -254,6 +275,7 @@ export default {
 
   created() {
     const parent = this.columnOrTableParent;
+
     this.isSubColumn = this.owner !== parent;
     this.columnId = (parent.tableId || parent.columnId) + '_column_' + columnIdSeed++;
 
@@ -286,7 +308,9 @@ export default {
 
     let column = this.getPropsData(basicProps, sortProps, selectProps, filterProps);
     column = mergeOptions(defaults, column);
-
+    if (this.$props.options) {
+      column._options = this.$props.options;
+    }
     // 注意 compose 中函数执行的顺序是从右到左
     const chains = compose(this.setColumnRenders, this.setColumnWidth, this.setColumnForcedProps);
     column = chains(column);
@@ -303,7 +327,6 @@ export default {
     const parent = this.columnOrTableParent;
     const children = this.isSubColumn ? parent.$el.children : parent.$refs.hiddenColumns.children;
     const columnIndex = this.getColumnElIndex(children, this.$el);
-
     owner.store.commit('insertColumn', this.columnConfig, columnIndex, this.isSubColumn ? parent.columnConfig : null);
   },
 
