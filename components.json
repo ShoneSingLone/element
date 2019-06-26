@@ -79,5 +79,6 @@
   "backtop": "./packages/backtop/index.js",
   "infiniteScroll": "./packages/infiniteScroll/index.js",
   "page-header": "./packages/page-header/index.js",
-  "cascader-panel": "./packages/cascader-panel/index.js"
+  "cascader-panel": "./packages/cascader-panel/index.js",
+  "region": "./packages/region/index.js"
 }

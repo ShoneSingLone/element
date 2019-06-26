@@ -287,6 +287,10 @@
             {
               "path": "/infiniteScroll",
               "title": "InfiniteScroll 无限滚动"
+            },
+            {
+              "path": "/region",
+              "title": "Region"
             }
           ]
         }
@@ -581,6 +585,10 @@
             {
               "path": "/infiniteScroll",
               "title": "InfiniteScroll"
+            },
+            {
+              "path": "/region",
+              "title": "Region"
             }
           ]
         }
@@ -875,6 +883,10 @@
             {
               "path": "/infiniteScroll",
               "title": "InfiniteScroll"
+            },
+            {
+              "path": "/region",
+              "title": "Region"
             }
           ]
         }
@@ -1169,6 +1181,10 @@
             {
               "path": "/infiniteScroll",
               "title": "InfiniteScroll"
+            },
+            {
+              "path": "/region",
+              "title": "Region"
             }
           ]
         }
