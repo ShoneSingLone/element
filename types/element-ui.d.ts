@@ -78,6 +78,7 @@ import { ElBacktop } from './backtop'
 import { ElInfiniteScroll } from './infiniteScroll'
 import { ElPageHeader } from './page-header'
 import { ElAvatar } from './avatar'
+import { ElRegion } from './region'
 
 export interface InstallationOptions {
   locale: any,
@@ -93,7 +94,7 @@ export const version: string
  * Please do not invoke this method directly.
  * Call `Vue.use(ElementUI)` to install.
  */
-export function install (vue: typeof Vue, options: InstallationOptions): void
+export function install(vue: typeof Vue, options: InstallationOptions): void
 
 /** ElementUI component common definition */
 export type Component = ElementUIComponent
@@ -119,220 +120,223 @@ export const Notification: ElNotification
 // TS cannot merge imported class with namespace, so declare subclasses instead
 
 /** Alert Component */
-export class Alert extends ElAlert {}
+export class Alert extends ElAlert { }
 
 /** Aside Component */
-export class Aside extends ElAside {}
+export class Aside extends ElAside { }
 
 /** Autocomplete Component */
-export class Autocomplete extends ElAutocomplete {}
+export class Autocomplete extends ElAutocomplete { }
 
 /** Bagde Component */
-export class Badge extends ElBadge {}
+export class Badge extends ElBadge { }
 
 /** Breadcrumb Component */
-export class Breadcrumb extends ElBreadcrumb {}
+export class Breadcrumb extends ElBreadcrumb { }
 
 /** Breadcrumb Item Component */
-export class BreadcrumbItem extends ElBreadcrumbItem {}
+export class BreadcrumbItem extends ElBreadcrumbItem { }
 
 /** Button Component */
-export class Button extends ElButton {}
+export class Button extends ElButton { }
 
 /** Button Group Component */
-export class ButtonGroup extends ElButtonGroup {}
+export class ButtonGroup extends ElButtonGroup { }
 
 /** Card Component */
-export class Card extends ElCard {}
+export class Card extends ElCard { }
 
 /** Cascader Component */
-export class Cascader extends ElCascader {}
+export class Cascader extends ElCascader { }
 
 /** Carousel Component */
-export class Carousel extends ElCarousel {}
+export class Carousel extends ElCarousel { }
 
 /** Carousel Item Component */
-export class CarouselItem extends ElCarouselItem {}
+export class CarouselItem extends ElCarouselItem { }
 
 /** Checkbox Component */
-export class Checkbox extends ElCheckbox {}
+export class Checkbox extends ElCheckbox { }
 
 /** Checkbox Button Component */
-export class CheckboxButton extends ElCheckboxButton {}
+export class CheckboxButton extends ElCheckboxButton { }
 
 /** Checkbox Group Component */
-export class CheckboxGroup extends ElCheckboxGroup {}
+export class CheckboxGroup extends ElCheckboxGroup { }
 
 /** Colunm Layout Component */
-export class Col extends ElCol {}
+export class Col extends ElCol { }
 
 /** Collapse Component */
-export class Collapse extends ElCollapse {}
+export class Collapse extends ElCollapse { }
 
 /** Collapse Item Component */
-export class CollapseItem extends ElCollapseItem {}
+export class CollapseItem extends ElCollapseItem { }
 
 /** Color Picker Component */
-export class ColorPicker extends ElColorPicker {}
+export class ColorPicker extends ElColorPicker { }
 
 /** Container Component */
-export class Container extends ElContainer {}
+export class Container extends ElContainer { }
 
 /** Date Picker Component */
-export class DatePicker extends ElDatePicker {}
+export class DatePicker extends ElDatePicker { }
 
 /** Dialog Component */
-export class Dialog extends ElDialog {}
+export class Dialog extends ElDialog { }
 
 /** Dropdown Component */
-export class Dropdown extends ElDropdown {}
+export class Dropdown extends ElDropdown { }
 
 /** Dropdown Item Component */
-export class DropdownItem extends ElDropdownItem {}
+export class DropdownItem extends ElDropdownItem { }
 
 /** Dropdown Menu Component */
-export class DropdownMenu extends ElDropdownMenu {}
+export class DropdownMenu extends ElDropdownMenu { }
 
 /** Footer Component */
-export class Footer extends ElFooter {}
+export class Footer extends ElFooter { }
 
 /** Form Component */
-export class Form extends ElForm {}
+export class Form extends ElForm { }
 
 /** Form Item Component */
-export class FormItem extends ElFormItem {}
+export class FormItem extends ElFormItem { }
 
 /** Header Component */
-export class Header extends ElHeader {}
+export class Header extends ElHeader { }
 
 /** Input Component */
-export class Input extends ElInput {}
+export class Input extends ElInput { }
 
 /** Input Number Component */
-export class InputNumber extends ElInputNumber {}
+export class InputNumber extends ElInputNumber { }
 
 /** Main Component */
-export class Main extends ElMain {}
+export class Main extends ElMain { }
 
 /** Menu that provides navigation for your website */
-export class Menu extends ElMenu {}
+export class Menu extends ElMenu { }
 
 /** Menu Item Component */
-export class MenuItem extends ElMenuItem {}
+export class MenuItem extends ElMenuItem { }
 
 /** Menu Item Group Component */
-export class MenuItemGroup extends ElMenuItemGroup {}
+export class MenuItemGroup extends ElMenuItemGroup { }
 
 /** Dropdown Select Option Component */
-export class Option extends ElOption {}
+export class Option extends ElOption { }
 
 /** Dropdown Select Option Group Component */
-export class OptionGroup extends ElOptionGroup {}
+export class OptionGroup extends ElOptionGroup { }
 
 /** Pagination Component */
-export class Pagination extends ElPagination {}
+export class Pagination extends ElPagination { }
 
 /** Popover Component */
-export class Popover extends ElPopover {}
+export class Popover extends ElPopover { }
 
 /** Progress Component */
-export class Progress extends ElProgress {}
+export class Progress extends ElProgress { }
 
 /** Rate Component */
-export class Rate extends ElRate {}
+export class Rate extends ElRate { }
 
 /** Radio Component */
-export class Radio extends ElRadio {}
+export class Radio extends ElRadio { }
 
 /** Radio Button Component */
-export class RadioButton extends ElRadioButton {}
+export class RadioButton extends ElRadioButton { }
 
 /** Radio Group Component */
-export class RadioGroup extends ElRadioGroup {}
+export class RadioGroup extends ElRadioGroup { }
 
 /** Row Layout Component */
-export class Row extends ElRow {}
+export class Row extends ElRow { }
 
 /** Dropdown Select Component */
-export class Select extends ElSelect {}
+export class Select extends ElSelect { }
 
 /** Slider Component */
-export class Slider extends ElSlider {}
+export class Slider extends ElSlider { }
 
 /** Step Component */
-export class Step extends ElStep {}
+export class Step extends ElStep { }
 
 /** Steps Component */
-export class Steps extends ElSteps {}
+export class Steps extends ElSteps { }
 
 /** Submenu Component */
-export class Submenu extends ElSubmenu {}
+export class Submenu extends ElSubmenu { }
 
 /** Switch Component */
-export class Switch extends ElSwitch {}
+export class Switch extends ElSwitch { }
 
 /** Table Component */
-export class Table extends ElTable {}
+export class Table extends ElTable { }
 
 /** Table Column Component */
-export class TableColumn extends ElTableColumn {}
+export class TableColumn extends ElTableColumn { }
 
 /** Tabs Component */
-export class Tabs extends ElTabs {}
+export class Tabs extends ElTabs { }
 
 /** Tab Pane Component */
-export class TabPane extends ElTabPane {}
+export class TabPane extends ElTabPane { }
 
 /** Tag Component */
-export class Tag extends ElTag {}
+export class Tag extends ElTag { }
 
 /** Timeline Component */
-export class Timeline extends ElTimeline {}
+export class Timeline extends ElTimeline { }
 
 /** Timeline Item Component */
-export class TimelineItem extends ElTimelineItem {}
+export class TimelineItem extends ElTimelineItem { }
 
 /** TimePicker Component */
-export class TimePicker extends ElTimePicker {}
+export class TimePicker extends ElTimePicker { }
 
 /** TimeSelect Component */
-export class TimeSelect extends ElTimeSelect {}
+export class TimeSelect extends ElTimeSelect { }
 
 /** Tooltip Component */
-export class Tooltip extends ElTooltip {}
+export class Tooltip extends ElTooltip { }
 
 /** Transfer Component */
-export class Transfer extends ElTransfer {}
+export class Transfer extends ElTransfer { }
 
 /** Tree Component */
-export class Tree extends ElTree {}
+export class Tree extends ElTree { }
 
 /** Upload Component */
-export class Upload extends ElUpload {}
+export class Upload extends ElUpload { }
 
 /** Divider Component */
-export class Divider extends ElDivider {}
+export class Divider extends ElDivider { }
 
 /** Link Component */
-export class Link extends ElLink {}
+export class Link extends ElLink { }
 
 /** Image Component */
-export class Image extends ElImage {}
+export class Image extends ElImage { }
 
 /** Icon Component */
-export class Icon extends ElIcon {}
+export class Icon extends ElIcon { }
 
 /** Calendar Component */
-export class Calendar extends ElCalendar {}
+export class Calendar extends ElCalendar { }
 
 /** Backtop Component */
-export class Backtop extends ElBacktop {}
+export class Backtop extends ElBacktop { }
 
 /** InfiniteScroll Directive */
 export const InfiniteScroll: PluginObject<ElInfiniteScroll>;
 
 /** PageHeader Component */
-export class PageHeader extends ElPageHeader {}
+export class PageHeader extends ElPageHeader { }
 
 /** Avatar Component */
-export class Avatar extends ElAvatar {}
+export class Avatar extends ElAvatar { }
+
+/** Region Component */
+export class Region extends ElRegion { }
