@@ -1,8 +1,9 @@
 <template>
   <div style="margin: 20px;">
-    {{tableData}}
+    <pre v-html="htmlTableData"></pre>
+    <el-input v-model="tableData[0].test" placeholder="1：男；其他：女"></el-input>
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column label="测试" width="180" prop="test" :options="{dictType:'GENDER'}" ></el-table-column>
+      <el-table-column label="性别" width="180" prop="test" :options="{dictType:'GENDER'}"></el-table-column>
       <el-table-column label="日期" width="180">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
@@ -27,74 +28,43 @@
         </template>
       </el-table-column>
     </el-table>
-
-    <el-table :data="tableData" class="tb-edit" style="width: 100%" highlight-current-row @row-click="handleCurrentChange">
-            <el-table-column prop="test_" label="地址">
-                <template scope="scope">
-                    <el-input size="small" v-model="scope.row.test" placeholder="请输入内容" @change="handleEdit(scope.$index, scope.row)"></el-input> <span>{{scope.row.address}}</span>
-                </template>
-            </el-table-column>
-            <el-table-column label="操作">
-                <template scope="scope">
-                    <!--<el-button size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>-->
-                    <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
-        <br>数据:{{tableData}}</div>
-
   </div>
 </template>
 
 <script>
-
-window.Vue=window.vue||{};
-window.Vue.convertDict=function(row, property, dictType, value){
-  console.log(row[property]=Date.now()) ;
-}
+window.Vue = window.vue || {};
+window.Vue.convertDict = function(row, property, dictType, value) {
+  console.log(row, property, dictType, value);
+  if (dictType === "GENDER") {
+    return value === "1" ? "男" : "女";
+  }
+  return value;
+};
 let tableMixins2 = {
-        methods: {
-            handleCurrentChange(row, event, column) {
-                console.log(row, event, column, event.currentTarget)
-            },
-            handleEdit(index, row) {
-                console.log(index, row);
-            },
-            handleDelete(index, row) {
-                console.log(index, row);
-            }
-        }
-    };
+  methods: {
+    handleCurrentChange(row, event, column) {
+      console.log(row, event, column, event.currentTarget);
+    },
+    handleEdit(index, row) {
+      console.log(index, row);
+    },
+    handleDelete(index, row) {
+      console.log(index, row);
+    }
+  }
+};
 let tableMixins = {
   data() {
+    let tableData = [...new Array(5)].fill({
+      date: "2016-05-02",
+      test: "1",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1518 弄"
+    });
+    console.log(tableData[0].test);
+
     return {
-      tableData: [
-        {
-          date: "2016-05-02",
-          test: "测试数据",
-          // test_: "测试数据",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "2016-05-04",
-          test: "测试数据",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          date: "2016-05-01",
-          test: "测试数据",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "2016-05-03",
-          test: "测试数据",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄"
-        }
-      ]
+      tableData
     };
   },
   methods: {
@@ -108,9 +78,14 @@ let tableMixins = {
 };
 
 export default {
-  mixins: [tableMixins,tableMixins2],
+  mixins: [tableMixins, tableMixins2],
   data() {
     return {};
+  },
+  computed: {
+    htmlTableData() {
+      return JSON.stringify(this.tableData, null, 2);
+    }
   },
   methods: {}
 };
