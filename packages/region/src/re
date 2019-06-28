@@ -1,0 +1,12 @@
+export tabData={ activeName: 'first',
+      first: '',
+      second: '',
+      third: '',
+      fourth: '',
+      tabPanes: [
+        { label: '省/直辖市', name: 'first' },
+        { label: '市', name: 'second' },
+        { label: '区/县', name: 'third' },
+        { label: '乡/镇/街道', name: 'fourth' }
+      ]
+    }

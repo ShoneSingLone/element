@@ -48,6 +48,7 @@ export function getPropByPath(obj, path, strict) {
   let tempObj = obj;
   path = path.replace(/\[(\w+)\]/g, '.$1');
   path = path.replace(/^\./, '');
+  console.log('getPropByPath', path);
 
   let keyArr = path.split('.');
   let i = 0;

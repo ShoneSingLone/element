@@ -2,4 +2,21 @@
 @import "common/var";
 
 @include b(region) {
+    .region-content {
+        padding: 20px;
+        max-width: 700px;
+        min-height: 100px;
+
+        .region-item {
+            &:hover {
+                cursor: pointer;
+                text-shadow: $--box-shadow-base;
+            }
+
+            &.region-selected {
+                font-weight: 600;
+                color: $--color-primary;
+            }
+        }
+    }
 }

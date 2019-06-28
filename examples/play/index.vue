@@ -2,11 +2,9 @@
   <el-container id="app">
     <el-aside width="200px">
       <el-tree
+        class="aside-tree"
         :data="routes"
-        :props="{
-      children: 'children',
-      label: 'name'
-      }"
+        :props="{ children: 'children', label: 'name' }"
         @node-click="handleNodeClick"
       ></el-tree>
     </el-aside>
@@ -59,5 +57,11 @@ body {
   color: #333;
   text-align: center;
   line-height: 200px;
+}
+.aside-tree {
+  .el-tree-node__label {
+    width: 0;
+    font-size: 14px;
+  }
 }
 </style>

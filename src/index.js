@@ -82,6 +82,7 @@ import InfiniteScroll from '../packages/infinite-scroll/index.js';
 import PageHeader from '../packages/page-header/index.js';
 import CascaderPanel from '../packages/cascader-panel/index.js';
 import Avatar from '../packages/avatar/index.js';
+import Region from '../packages/region/index.js';
 import locale from 'element-ui/src/locale';
 import CollapseTransition from 'element-ui/src/transitions/collapse-transition';
 
@@ -163,6 +164,7 @@ const components = [
   PageHeader,
   CascaderPanel,
   Avatar,
+  Region,
   CollapseTransition
 ];
 
@@ -284,5 +286,6 @@ export default {
   InfiniteScroll,
   PageHeader,
   CascaderPanel,
-  Avatar
+  Avatar,
+  Region
 };
