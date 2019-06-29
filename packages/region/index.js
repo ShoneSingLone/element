@@ -1,4 +1,4 @@
-import Region from './src/main';
+import Region from './src/region';
 
 /* istanbul ignore next */
 Region.install = function(Vue) {

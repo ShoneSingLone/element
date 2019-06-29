@@ -34,34 +34,33 @@ module.exports = {
     minimize: false
   },
   module: {
-    rules: [
-      {
-        test: /\.(jsx?|babel|es6)$/,
-        include: process.cwd(),
-        exclude: config.jsexclude,
-        loader: 'babel-loader'
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          compilerOptions: {
-            preserveWhitespace: false
-          }
-        }
-      },
-      {
-        test: /\.css$/,
-        loaders: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
-        loader: 'url-loader',
-        query: {
-          limit: 10000,
-          name: path.posix.join('static', '[name].[hash:7].[ext]')
+    rules: [{
+      test: /\.(jsx?|babel|es6)$/,
+      include: process.cwd(),
+      exclude: config.jsexclude,
+      loader: 'babel-loader'
+    },
+    {
+      test: /\.vue$/,
+      loader: 'vue-loader',
+      options: {
+        compilerOptions: {
+          preserveWhitespace: false
         }
       }
+    },
+    {
+      test: /\.css$/,
+      loaders: ['style-loader', 'css-loader']
+    },
+    {
+      test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
+      loader: 'url-loader',
+      query: {
+        limit: 10000,
+        name: path.posix.join('static', '[name].[hash:7].[ext]')
+      }
+    }
     ]
   },
   plugins: [

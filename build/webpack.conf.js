@@ -2,6 +2,7 @@ const path = require('path');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const config = require('./config');
 
@@ -30,6 +31,32 @@ module.exports = {
   },
   optimization: {
     minimizer: [
+      new UglifyJsPlugin({
+        minify(file, sourceMap) {
+          const extractedComments = [];
+          // Custom logic for extract comments
+          const {
+            error,
+            map,
+            code,
+            warnings
+          } = require('uglify-js')
+            .minify(file, {
+              compress: {
+                drop_console: true,
+                drop_debugger: true
+              }
+            });
+
+          return {
+            error,
+            map,
+            code,
+            warnings,
+            extractedComments
+          };
+        }
+      }),
       new TerserPlugin({
         terserOptions: {
           output: {
@@ -46,22 +73,21 @@ module.exports = {
     children: false
   },
   module: {
-    rules: [
-      {
-        test: /\.(jsx?|babel|es6)$/,
-        include: process.cwd(),
-        exclude: config.jsexclude,
-        loader: 'babel-loader'
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          compilerOptions: {
-            preserveWhitespace: false
-          }
+    rules: [{
+      test: /\.(jsx?|babel|es6)$/,
+      include: process.cwd(),
+      exclude: config.jsexclude,
+      loader: 'babel-loader'
+    },
+    {
+      test: /\.vue$/,
+      loader: 'vue-loader',
+      options: {
+        compilerOptions: {
+          preserveWhitespace: false
         }
       }
+    }
     ]
   },
   plugins: [

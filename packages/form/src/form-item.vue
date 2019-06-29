@@ -46,6 +46,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import AsyncValidator from 'async-validator';
 import emitter from 'element-ui/src/mixins/emitter';
@@ -148,6 +149,7 @@ export default {
       return parent;
     },
     fieldValue() {
+      /*  从 Form 的 model 中动态得到当前表单组件的数据 */
       const model = this.form.model;
       if (!model || !this.prop) {
         return;
@@ -157,8 +159,8 @@ export default {
       if (path.indexOf(':') !== -1) {
         path = path.replace(/:/, '.');
       }
-
-      return getPropByPath(model, path, true).v;
+      let res = getPropByPath(model, path, true).v;
+      return res;
     },
     isRequired() {
       let rules = this.getRules();
@@ -198,7 +200,7 @@ export default {
   methods: {
     validate(trigger, callback = noop) {
       this.validateDisabled = false;
-      console.log('form-item', trigger);
+      console.log('form-item validate', trigger);
       const rules = this.getFilteredRule(trigger);
       if ((!rules || rules.length === 0) && this.required === undefined) {
         callback();
@@ -214,10 +216,9 @@ export default {
         });
       }
       descriptor[this.prop] = rules;
-
       const validator = new AsyncValidator(descriptor);
       const model = {};
-
+      console.log(this.prop, this.fieldValue);
       model[this.prop] = this.fieldValue;
 
       validator.validate(
@@ -326,7 +327,7 @@ export default {
     if (this.prop) {
       /* 预先将 FormItem 的每个实例缓存在 Form 中 */
       this.dispatch('ElForm', 'el.form.addField', [this]);
-
+      /* 初始化的值 */
       let initialValue = this.fieldValue;
       if (Array.isArray(initialValue)) {
         initialValue = [].concat(initialValue);

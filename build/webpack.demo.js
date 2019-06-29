@@ -71,15 +71,15 @@ const webpackConfig = {
         'css-loader',
         'sass-loader'
         /*          {
-                    loader: 'style-resources-loader',
-                    options: {
-                      patterns: [
-                        path.resolve(process.cwd(), './packages/theme-chalk/src/mixins/mixins.scss'),
-                        path.resolve(process.cwd(), './packages/theme-chalk/src/common/var.scss')
-                      ]
-                    }
-                  }
-           */
+                                    loader: 'style-resources-loader',
+                                    options: {
+                                      patterns: [
+                                        path.resolve(process.cwd(), './packages/theme-chalk/src/mixins/mixins.scss'),
+                                        path.resolve(process.cwd(), './packages/theme-chalk/src/common/var.scss')
+                                      ]
+                                    }
+                                  }
+                           */
       ]
     },
     {
@@ -152,7 +152,7 @@ if (isProd) {
     new UglifyJsPlugin({
       cache: true,
       parallel: true,
-      sourceMap: false
+      sourceMap: true
     }),
     new OptimizeCSSAssetsPlugin({})
   );
