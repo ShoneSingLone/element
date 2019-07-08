@@ -19,7 +19,9 @@
             :options="regionData"
           ></el-region>
         </el-form-item>
-        <el-input v-model="ruleForm.region"></el-input>
+        <div>
+          {{ruleForm.region.toString()}}
+        </div>
         <el-form-item label="活动区域" prop="region">
           <el-cascader :options="regionData" v-model="ruleForm.region" clearable></el-cascader>
         </el-form-item>

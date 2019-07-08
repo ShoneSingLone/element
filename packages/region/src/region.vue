@@ -77,7 +77,9 @@
         ref="popper"
         :class="['el-popper', 'el-cascader__dropdown', popperClass]"
       >
-<!--       
+        <!--       
+        <div>privateCheckedValue{{privateCheckedValue}}</div>
+        <div>currentSelectLabel</div>
         <div>presentText{{presentText}}</div>
         <div>valueLabel{{valueLabel}}</div>
         <div>valueCode{{valueCode}}</div>
@@ -85,10 +87,11 @@
         <div>regionModel.first{{regionModel.first.id}}{{regionModel.first.label}}</div>
         <div>regionModel.second{{regionModel.second.id}}{{regionModel.second.label}}</div>
         <div>regionModel.third{{regionModel.third.id}}{{regionModel.third.label}}</div>
- -->      
-   <!-- region -->
+        -->
+        <!-- region -->
         <div class="region-content">
-          <el-tabs v-model="activeName">
+          <el-input v-model="currentSelectLabel" size="mini"/>
+          <el-tabs v-model="privateActiveName" :data-active-name="activeName">
             <el-tab-pane
               v-for="(tab, index) in tabPanes"
               :key="index"
@@ -247,10 +250,14 @@ export default {
   data() {
     let first =
       this.options ||
-      (window.globalValue && window.globalValue && window.globalValue.regionOptions) || [];
+      (window.globalValue &&
+        window.globalValue &&
+        window.globalValue.regionOptions) ||
+      [];
     return {
       /* region */
-      activeName: 'first',
+      privateCheckedValue: this.value || null,
+      privateActiveName: 'first',
       regionOrder: ['first', 'second', 'third'],
       /* collection options */
       regionTab: {
@@ -289,6 +296,29 @@ export default {
   },
 
   computed: {
+    activeName() {
+      let { regionModel } = this;
+      let { first, second } = regionModel;
+      let res = 'first';
+      if (!first) {
+        res = 'first';
+      }
+      if (first && !second) {
+        res = 'second';
+      }
+      if (first && !second) {
+        res = 'second';
+      }
+      if (first && second) {
+        res = 'third';
+      }
+      console.log('activeName', res);
+      this.privateActiveName = res;
+      return res;
+    },
+    currentSelectLabel() {
+      return this.valueLabel.join(this.separator);
+    },
     /* region */
     valueLabel() {
       console.log('valueLabel changed');
@@ -360,13 +390,10 @@ export default {
   watch: {
     /* region */
     currentModelLabel(value) {},
-    valueLabel(value, oldValue) {
-      console.log('valueLabel changed', value, oldValue);
-      if (Array.isArray(value) && value.length > 0) {
-        this.presentText = value.join(this.separator);
-      }
-    },
     'regionModel.first': function(newValue) {
+      if (newValue) {
+        this.regionTab.second = newValue.children;
+      }
       /* 处理本级数据及下一级的是否可点击 */
       this.handleTabDisable('second', newValue);
       if (this.checkedValue) {
@@ -374,7 +401,7 @@ export default {
           'second',
           this.getModel(
             this.regionModel.first.children,
-            this.checkedValue.replace(/^(\d{2})(\d{2})(\d{2})/, '$1$200')
+            this.privateCheckedValue.replace(/^(\d{2})(\d{2})(\d{2})/, '$1$200')
           )
         );
       }
@@ -398,6 +425,7 @@ export default {
       console.log('regionValue change', val);
       if (!isEqual(val, this.checkedValue)) {
         this.checkedValue = val;
+        this.privateCheckedValue = val;
         this.computePresentContent();
       }
     },
@@ -407,6 +435,9 @@ export default {
       if (!isEqual(val, value) || isUndefined(value)) {
         if (val.length === 3) {
           val = val[2];
+          if (Array.isArray(this.valueLabel) && value.length > 0) {
+            this.presentText = this.valueLabel.join(this.separator);
+          }
           this.emitCheckeValueChange(val);
         }
       }
@@ -497,7 +528,6 @@ export default {
         /* 【填充】下一级数据 */
         this.regionTab[subLevelName] = item.children || [];
         /* 【返回的数据】与value相关 同时disabled响应为false*/
-        this.activeName = subLevelName;
       }
       this.regionModel[levelName] = item;
     },
@@ -574,7 +604,6 @@ export default {
     handleClear() {
       this.presentText = '';
       this.regionModel.first = false;
-      this.activeName = 'first';
       this.emitCheckeValueChange('');
     },
     handleExpandChange(value) {
@@ -620,18 +649,21 @@ export default {
       });
     },
     getModel(dataTree /* data */, value /* tag */) {
-      let res = dataTree.filter(item => item.value === value);
+      let res = false;
+      if (Array.isArray(dataTree)) {
+        res = dataTree.filter(item => item.value === value);
+      }
       return res && res.length === 1 ? res[0] : false;
     },
     computePresentText() {
-      const { checkedValue } = this;
-      if (!isEmpty(checkedValue)) {
-        console.log('region computePresentText', checkedValue);
+      const { privateCheckedValue } = this;
+      if (!isEmpty(privateCheckedValue)) {
+        console.log('region computePresentText', privateCheckedValue);
         this.chooseArea(
           'first',
           this.getModel(
             this.regionTab.first,
-            checkedValue.replace(/^(\d{2})(\d{2})(\d{2})/, '$10000')
+            privateCheckedValue.replace(/^(\d{2})(\d{2})(\d{2})/, '$10000')
           )
         );
       } else {
