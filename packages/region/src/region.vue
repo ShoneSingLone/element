@@ -77,45 +77,50 @@
         ref="popper"
         :class="['el-popper', 'el-cascader__dropdown', popperClass]"
       >
-        <el-cascader-panel
-          ref="panel"
-          v-show="!filtering"
-          v-model="checkedValue"
-          :options="options"
-          :props="config"
-          :border="false"
-          :render-label="$scopedSlots.default"
-          @expand-change="handleExpandChange"
-          @close="toggleDropDownVisible(false)"
-        ></el-cascader-panel>
-        <el-scrollbar
-          ref="suggestionPanel"
-          v-if="filterable"
-          v-show="filtering"
-          tag="ul"
-          class="el-cascader__suggestion-panel"
-          view-class="el-cascader__suggestion-list"
-          @keydown.native="handleSuggestionKeyDown"
-        >
-          <template v-if="suggestions.length">
-            <li
-              v-for="(item, index) in suggestions"
-              :key="item.uid"
-              :class="[
-                'el-cascader__suggestion-item',
-                item.checked && 'is-checked'
-              ]"
-              :tabindex="-1"
-              @click="handleSuggestionClick(index)"
+<!--       
+        <div>presentText{{presentText}}</div>
+        <div>valueLabel{{valueLabel}}</div>
+        <div>valueCode{{valueCode}}</div>
+        <div>checkedValue{{checkedValue}}</div>
+        <div>regionModel.first{{regionModel.first.id}}{{regionModel.first.label}}</div>
+        <div>regionModel.second{{regionModel.second.id}}{{regionModel.second.label}}</div>
+        <div>regionModel.third{{regionModel.third.id}}{{regionModel.third.label}}</div>
+ -->      
+   <!-- region -->
+        <div class="region-content">
+          <el-tabs v-model="activeName">
+            <el-tab-pane
+              v-for="(tab, index) in tabPanes"
+              :key="index"
+              :label="tab.label"
+              :name="tab.name"
+              :disabled="tabIsDisabled[tab.name]"
             >
-              <span>{{ item.text }}</span>
-              <i v-if="item.checked" class="el-icon-check"></i>
-            </li>
-          </template>
-          <slot v-else name="empty">
-            <li class="el-cascader__empty-text">{{ t('el.cascader.noMatch') }}</li>
-          </slot>
-        </el-scrollbar>
+              <el-scrollbar
+                tag="ul"
+                wrap-class="el-select-dropdown__wrap"
+                view-class="el-select-dropdown__list"
+                ref="scrollbar"
+              >
+                <el-row>
+                  <el-col
+                    :xs="8"
+                    :sm="6"
+                    :md="4"
+                    v-for="(item, index) in regionTab[tab.name]"
+                    :key="index"
+                  >
+                    <span
+                      :class="['region-item', {'region-selected':item.id===regionModel[tab.name].id}]"
+                      @click="chooseArea(tab.name,item)"
+                    >{{item.label}}</span>
+                  </el-col>
+                </el-row>
+              </el-scrollbar>
+            </el-tab-pane>
+          </el-tabs>
+        </div>
+        <!-- region -->
       </div>
     </transition>
   </div>
@@ -240,12 +245,40 @@ export default {
   },
 
   data() {
+    let first =
+      this.options ||
+      (window.globalValue && window.globalValue && window.globalValue.regionOptions) || [];
     return {
+      /* region */
+      activeName: 'first',
+      regionOrder: ['first', 'second', 'third'],
+      /* collection options */
+      regionTab: {
+        first,
+        second: [],
+        third: [],
+        fourth: []
+      },
+      /* 各级别的返回数据 */
+      regionModel: {
+        first: false,
+        second: false,
+        third: false,
+        fourth: false
+      },
+      tabIsDisabled: { first: false, second: true, third: true, fourth: true },
+      tabPanes: [
+        { label: '省/直辖市', name: 'first' },
+        { label: '市', name: 'second' },
+        { label: '区/县', name: 'third' }
+        // { label: '乡/镇/街道', name: 'fourth' }
+      ],
+      /* region */
       dropDownVisible: false,
       checkedValue: this.value || null,
       inputHover: false,
-      inputValue: null,
-      presentText: null,
+      inputValue: null /* 用来显示地址的字符串 */,
+      presentText: null /* multiple多选采用 */,
       presentTags: [],
       checkedNodes: [],
       filtering: false,
@@ -256,6 +289,19 @@ export default {
   },
 
   computed: {
+    /* region */
+    valueLabel() {
+      console.log('valueLabel changed');
+      return this.regionOrder
+        .filter(level => this.regionModel[level])
+        .map(level => this.regionModel[level].label);
+    },
+    valueCode() {
+      return this.regionOrder
+        .filter(level => this.regionModel[level])
+        .map(level => this.regionModel[level].value);
+    },
+    /* region */
     realSize() {
       const _elFormItemSize = (this.elFormItem || {}).elFormItemSize;
       return this.size || _elFormItemSize || (this.$ELEMENT || {}).size;
@@ -312,6 +358,42 @@ export default {
   },
 
   watch: {
+    /* region */
+    currentModelLabel(value) {},
+    valueLabel(value, oldValue) {
+      console.log('valueLabel changed', value, oldValue);
+      if (Array.isArray(value) && value.length > 0) {
+        this.presentText = value.join(this.separator);
+      }
+    },
+    'regionModel.first': function(newValue) {
+      /* 处理本级数据及下一级的是否可点击 */
+      this.handleTabDisable('second', newValue);
+      if (this.checkedValue) {
+        this.chooseArea(
+          'second',
+          this.getModel(
+            this.regionModel.first.children,
+            this.checkedValue.replace(/^(\d{2})(\d{2})(\d{2})/, '$1$200')
+          )
+        );
+      }
+    },
+    'regionModel.second': function(newValue) {
+      this.handleTabDisable('third', newValue);
+      if (this.checkedValue) {
+        this.chooseArea(
+          'third',
+          this.getModel(this.regionModel.second.children, this.checkedValue)
+        );
+      }
+    },
+    'regionModel.third': function(newValue) {
+      /* 只有选择过第三季才会触发 */
+      this.checkedValue = this.valueCode;
+    },
+    /* region */
+
     value(val) {
       console.log('regionValue change', val);
       if (!isEqual(val, this.checkedValue)) {
@@ -321,11 +403,12 @@ export default {
     },
     checkedValue(val) {
       const { value } = this;
+      console.log('checkedValue changed', val);
       if (!isEqual(val, value) || isUndefined(value)) {
-        this.$emit('input', val);
-        this.$emit('change', val);
-        this.dispatch('ElFormItem', 'el.form.change', [val]);
-        this.computePresentContent();
+        if (val.length === 3) {
+          val = val[2];
+          this.emitCheckeValueChange(val);
+        }
       }
     },
     options: {
@@ -384,6 +467,42 @@ export default {
   },
 
   methods: {
+    /* region */
+    emitCheckeValueChange(val) {
+      this.$emit('input', val);
+      this.$emit('change', val);
+      this.dispatch('ElFormItem', 'el.form.change', [val]);
+      this.computePresentContent();
+    },
+    handleTabDisable(levelName, parentValue) {
+      console.log('handleTabDisable', levelName);
+
+      let order = this.regionOrder;
+      let thisOrder = order.indexOf(levelName);
+      /* 上一级有值才false
+       * !上一级数据为真值，本级可以显示 idDis为假值
+       * ?本级数据值为假值
+       * 0 代表是first，always false */
+      this.tabIsDisabled[levelName] = thisOrder > 0 ? !parentValue : false;
+      this.regionModel[levelName] = false;
+      // if (!this.value) this.regionModel[levelName] = false;
+      return;
+    },
+    chooseArea(levelName /* :string */, item /* :array */) {
+      console.log('levelName', levelName, 'item', item);
+      let order = this.regionOrder;
+      let thisOrder = order.indexOf(levelName);
+      if (thisOrder !== order.length - 1) {
+        let subLevelName = order[thisOrder + 1];
+        /* 【填充】下一级数据 */
+        this.regionTab[subLevelName] = item.children || [];
+        /* 【返回的数据】与value相关 同时disabled响应为false*/
+        this.activeName = subLevelName;
+      }
+      this.regionModel[levelName] = item;
+    },
+    /* region */
+
     getMigratingConfig() {
       return {
         props: {
@@ -410,7 +529,6 @@ export default {
         if (visible) {
           this.$nextTick(() => {
             this.updatePopper();
-            this.panel.scrollIntoView();
           });
         }
         input.$refs.input.setAttribute('aria-expanded', visible);
@@ -455,7 +573,9 @@ export default {
     },
     handleClear() {
       this.presentText = '';
-      this.panel.clearCheckedNodes();
+      this.regionModel.first = false;
+      this.activeName = 'first';
+      this.emitCheckeValueChange('');
     },
     handleExpandChange(value) {
       this.$nextTick(this.updatePopper.bind(this));
@@ -499,16 +619,24 @@ export default {
         }
       });
     },
+    getModel(dataTree /* data */, value /* tag */) {
+      let res = dataTree.filter(item => item.value === value);
+      return res && res.length === 1 ? res[0] : false;
+    },
     computePresentText() {
-      const { checkedValue, config } = this;
+      const { checkedValue } = this;
       if (!isEmpty(checkedValue)) {
-        const node = this.panel.getNodeByValue(checkedValue);
-        if (node && (config.checkStrictly || node.isLeaf)) {
-          this.presentText = node.getText(this.showAllLevels, this.separator);
-          return;
-        }
+        console.log('region computePresentText', checkedValue);
+        this.chooseArea(
+          'first',
+          this.getModel(
+            this.regionTab.first,
+            checkedValue.replace(/^(\d{2})(\d{2})(\d{2})/, '$10000')
+          )
+        );
+      } else {
+        this.presentText = null;
       }
-      this.presentText = null;
     },
     computePresentTags() {
       const {

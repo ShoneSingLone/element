@@ -9,6 +9,7 @@
         label-width="100px"
         class="demo-ruleForm"
       >
+        <el-input v-model="ruleForm.regionValue"></el-input>
         <el-form-item label="活动区域" prop="regionValue">
           <el-region
             ref="region"
@@ -18,11 +19,9 @@
             :options="regionData"
           ></el-region>
         </el-form-item>
+        <el-input v-model="ruleForm.region"></el-input>
         <el-form-item label="活动区域" prop="region">
-          <el-select clearable v-model="ruleForm.region" placeholder="请选择活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
+          <el-cascader :options="regionData" v-model="ruleForm.region" clearable></el-cascader>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
@@ -40,9 +39,11 @@ export default {
     return {
       regionData,
       ruleForm: {
-        regionValue: ["140000", "140700", "140726"],
+        regionValue: "140726",
+        // regionValue: ["140000", "140700", "140726"],
         name: "",
-        region: "",
+        region: "140726",
+        // region: ["140000", "140700", "140726"],
         date1: "",
         date2: "",
         delivery: false,
@@ -57,7 +58,6 @@ export default {
         ],
         regionValue: [
           {
-            type: "array",
             required: true,
             message: "请选择活动区域",
             trigger: "change"

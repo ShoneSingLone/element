@@ -4,6 +4,8 @@
 
 .region-content {
   padding: 20px;
+  min-width: 500px;
+  max-width: 600px;
   min-height: 100px;
   .region-item {
     font-size: $--font-size-small;

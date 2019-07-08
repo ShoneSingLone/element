@@ -481,6 +481,7 @@ export default {
     computePresentText() {
       const { checkedValue, config } = this;
       if (!isEmpty(checkedValue)) {
+        console.log('cascader computePresentText', checkedValue);
         const node = this.panel.getNodeByValue(checkedValue);
         if (node && (config.checkStrictly || node.isLeaf)) {
           this.presentText = node.getText(this.showAllLevels, this.separator);

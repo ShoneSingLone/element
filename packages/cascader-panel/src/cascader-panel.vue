@@ -320,6 +320,8 @@ export default {
       });
     },
     getNodeByValue(val) {
+      console.log('cascader-panel getNodeByValue', val);
+
       return this.store.getNodeByValue(val);
     },
     getFlattedNodes(leafOnly) {
