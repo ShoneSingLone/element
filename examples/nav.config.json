@@ -294,7 +294,11 @@
             },
             {
               "path": "/region",
-              "title": "Region"
+              "title": "Region 区域"
+            },
+            {
+              "path": "/drawer",
+              "title": "Drawer 抽屉"
             }
           ]
         }
@@ -593,6 +597,10 @@
             {
               "path": "/avatar",
               "title": "Avatar"
+            },
+            {
+              "path": "/drawer",
+              "title": "Drawer"
             }
           ]
         }
@@ -899,6 +907,10 @@
             {
               "path": "/region",
               "title": "Region"
+            },
+            {
+              "path": "/drawer",
+              "title": "Drawer"
             }
           ]
         }
@@ -1201,6 +1213,10 @@
             {
               "path": "/avatar",
               "title": "Avatar"
+            },
+            {
+              "path": "/drawer",
+              "title": "Drawer"
             }
           ]
         }

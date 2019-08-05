@@ -394,8 +394,8 @@ Les callback de validations personnalisées doivent être appelées. Un usage pl
     prop="email"
     label="Email"
     :rules="[
-      { required: true, message: 'Please input email address', trigger: 'blur' },
-      { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] }
+      { required: true, message: 'Veuillez entrer l\'adresse e-mail', trigger: 'blur' },
+      { type: 'email', message: 'Veuillez entrer une adresse e-mail valide', trigger: ['blur', 'change'] }
     ]"
   >
     <el-input v-model="dynamicValidateForm.email"></el-input>

@@ -1,5 +1,93 @@
 ## Changelog
 
+### 2.11.1
+
+*2019-07-26*
+
+#### Bug fixes
+
+- Image
+  - Fix Image component SSR compatibility (#16737 by @luckyCao)
+- Chore
+  - Update dart-sass compatibility (#16744 by @LewisChennnnn)
+
+### 2.11.0
+
+*2019-07-25*
+
+#### New features
+
+- Drawer
+  - Add drawer component (#16577 by @JeremyWuuuuu)
+
+#### Bug fixes
+
+- Checkbox
+  - Enhance css selector (#16006 by @Hazlank)
+- Tree
+  - Make el-tree generic (#15934 by @JeremyWuuuuu)
+  - Set isCurrent prop to False (#15870 by @kkkisme)
+- Dropdown
+  - Fix split-button caret default color (#15931 by @JuniorTour)
+- Cascader
+  - Fix level 1 children is empty update problem (#16399 by @luckyCao)
+  - Add sets default values when lazy is true (#16420 by @luckyCao)
+  - Fix display errors when node value is duplicate (#15935 by @junyiz)
+  - Expose getCheckedNodes and fix options change bug (#16709 by @SimonaliaChen)
+- Calendar
+  - Display correct header when range is specified (#16354 by @ziyoung)
+- Submenu
+  - Fix prop append-to-body (#16289 by @a631807682)
+- Table 
+  - Fix tree table when updating data (#16481 by @island205)
+- Select
+  - Fix memory leak issue (#16463 by @island205)
+- InfiniteScroll
+  - Update naming & doc (#16698 by @iamkun)
+- Avatar
+  - Fix image not center vertically issue (#16489 by @luckyCao)
+- Dialog
+  - Add destroyOnClose attribute (#16455 by @ziyoung)
+- Image
+  - Add big Image preview feature (#16333 by @luckyCao)
+
+#### Optimization
+
+- Docs
+  - Fix dropdown demo (#16193 by @webxmsj)
+  - Fix typo in table documents (#15971 by @howiefh)
+- I18n
+  - Update translation of Thai language (#16689 by @ponkrit)
+- Chore
+  - Update theme base api (#16607 by @iamkun)
+  - Add form theme token (#16699 by @iamkun)
+  - Mark ali inner user's access (#16609 by @iamkun)
+  - Fix doc anchor bug (#16692 by @iamkun)
+
+### 2.10.1
+
+*2019-07-02*
+
+#### Bug fixes
+
+- Table
+  - Fix sort icon (#15439 by @bezany)
+  - Fix layout breaks when append slot exists (#16332 by @ziyoung)
+  - Fix showOverflowTooltip not reactive (#16295 by @a631807682)
+  - Register scrollbar in filter-panel (#16246 by @ziyoung)
+- Chore
+  - Fix 2.9 docs (#16233 by @ziyoung)
+  - Fix index page theme intro english css style issue (#16254 by @iamkun)
+
+#### Optimization
+
+- Tag
+  - Compatible with IE (#16334 by @ziyoung)
+- Chore
+  - Update Dingtalk Group QR image (#16236 by @iamkun)
+- Doc
+  - Update online theme roller doc (#16244 by @iamkun)
+
 ### 2.10.0
 
 *2019-06-25*
@@ -14,7 +102,6 @@
   - Add avatar component (#16144 by @luckyCao)
 - Upload:
   - Add capability to customize thumbnail template (#13192 by @victorzhuk)
-
 
 #### Bug fixes
 
@@ -55,7 +142,6 @@
   - Update test api host (#15807 by @iamkun)
 
 #### Optimization
-
 
 - Tree
   - Modify loop conditions to improve performance (#15699 by @KingJeason)
