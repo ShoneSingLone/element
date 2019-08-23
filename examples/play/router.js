@@ -1,10 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Form from './pages/form/form.vue';
-import Table from './pages/table/table.vue';
-import TableRender from './pages/table/table-render/table.vue';
-import Region from './pages/form/region.vue';
-import transform from './pages/form/transform.vue';
 
 Vue.use(VueRouter);
 window.console.oldLog = window.console.log;
@@ -25,7 +20,6 @@ window.console.l = ((log) => {
     }
     let obj = new Color({});
     return window.console.oldLog.apply(log, [...['%c colored', `background:${obj.bg};color:${obj.color}`, 'this is not colored'], ...args]);
-
   }
 })(console.log)
 let router = new VueRouter({
@@ -35,25 +29,25 @@ let router = new VueRouter({
   }, {
     path: '/home',
     name: 'home',
-    component: Form,
+    component: () => import( /* webpackChunkName: "Form" */ './pages/form/form.vue'),
     children: [{
       path: 'Region',
       name: 'Region',
-      component: Region
+      component: () => import( /* webpackChunkName:"Region" */ './pages/form/region.vue')
     }, {
       path: 'transform',
       name: 'transform',
-      component: transform
+      component: () => import( /* webpackChunkName:"transform" */ './pages/form/transform.vue')
     }]
 
   }, {
     path: '/table',
     name: 'table',
-    component: Table
+    component: () => import( /* webpackChunkName:"Table" */ './pages/table/table.vue')
   }, {
     path: '/TableRender',
     name: 'TableRender',
-    component: TableRender
+    component: () => import( /* webpackChunkName:"TableRender" */ './pages/table/table-render/table.vue')
   }]
 });
 
