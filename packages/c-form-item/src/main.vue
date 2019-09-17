@@ -1,36 +1,33 @@
-<template>
-  <el-col class="el-c-form-item" :sm="8" :md="6">
-    <el-form-item v-if="options.type==='input'" label="活动名称">
-      <el-input v-model="input" placeholder="请输入内容"></el-input>
-    </el-form-item>
-    <el-form-item v-else-if="options.type==='select'" label="活动区域">
-      <el-select v-model="input" placeholder="请选择活动区域">
-        <el-option label="区域一" value="shanghai"></el-option>
-        <el-option label="区域二" value="beijing"></el-option>
-        <el-option label="区域二" value="beijing"></el-option>
-        <el-option label="区域二" value="beijing"></el-option>
-        <el-option label="区域二" value="beijing"></el-option>
-        <el-option label="区域二" value="beijing"></el-option>
-        <el-option label="区域二" value="beijing"></el-option>
-        <el-option label="区域二" value="beijing"></el-option>
-      </el-select>
-    </el-form-item>
-  </el-col>
-</template>
 
 <script>
+import _merge from 'lodash/merge';
 export default {
+  functional: true,
   name: 'ElCFormItem',
-  created() {
-    console.log(this.options);
-  },
   props: {
-    options: Object
+    options: {
+      type: Object,
+      required: require
+    }
   },
-  data() {
-    return {
-      input: 'ElCFormItem'
-    };
+  render: function(createElement, context) {
+    let {
+      data,
+      props: { options }
+    } = context;
+    data = _merge(data, { attrs: options });
+    function appropriateListComponent() {
+      const { Vue } = window;
+      if (!Vue) alert('未引入全局对象Vue');
+      const component = Vue.component(options._type);
+      if (!component.name) {
+        alert(`未使用 Vue.component 全局注册组件${options._type}`);
+        return Vue.component({});
+      } else {
+        return component;
+      }
+    }
+    return createElement(appropriateListComponent(), data, context.children);
   }
 };
 </script>

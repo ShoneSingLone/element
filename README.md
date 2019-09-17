@@ -27,6 +27,7 @@ npm i vue vue-loader vue-router vue-template-compiler vue-template-es2015-compil
    1. `npm run dev`可以通过webpack-dev-sever在本地运行Element官网的demo。
 1. `npm run dev:play`可以在编写组件的时候预览效果 [`build/webpack.demo.js`](http://localhost:8085/)
 1. `npm run dist`进行Element的打包操作
+1. `npm run deploy:build`进行Element的打包操作
 
 ##
 [uglifyjs-webpack-plugin 删除console](https://github.com/webpack-contrib/uglifyjs-webpack-plugin)

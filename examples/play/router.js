@@ -22,15 +22,20 @@ window.console.l = ((log) => {
     return window.console.oldLog.apply(log, [...['%c colored', `background:${obj.bg};color:${obj.color}`, 'this is not colored'], ...args]);
   }
 })(console.log)
+
 let router = new VueRouter({
   routes: [{
     path: '*',
-    redirect: '/home'
+    redirect: '/form'
   }, {
-    path: '/home',
-    name: 'home',
+    path: '/form',
+    name: 'form',
     component: () => import( /* webpackChunkName: "Form" */ './pages/form/form.vue'),
     children: [{
+      path: 'formItem',
+      name: 'formItem',
+      component: () => import( /* webpackChunkName:"PageFormItem" */ './pages/form/PageFormItem.vue')
+    }, {
       path: 'Region',
       name: 'Region',
       component: () => import( /* webpackChunkName:"Region" */ './pages/form/region.vue')

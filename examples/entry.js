@@ -29,6 +29,9 @@ const globalEle = new Vue({
   data: { $isEle: false } // 是否 ele 用户
 });
 
+window.Vue = Vue;
+console.log('Entry', window.Vue);
+
 Vue.mixin({
   computed: {
     $isEle: {
