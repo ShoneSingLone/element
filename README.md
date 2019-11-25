@@ -28,7 +28,7 @@ npm i vue vue-loader vue-router vue-template-compiler vue-template-es2015-compil
 1. `npm run build:file`生成目标文件(`npm run dev`的前置条件)
    1. `npm run dev` 可以通过webpack-dev-sever在本地运行 `Element` 官网的demo。
 1. `npm run dev:play`可以在编写组件的时候预览效果 [`build/webpack.demo.js`](http://localhost:8085/)
-1. `npm run dist`进行Element-lib的打包操作
+1. `npm run dist`进行Element-lib的打包操作——最终的index.js
 1. `npm run deploy:build`进行Element-ui 文档网站的打包操作
 1. 通过 `webpack-dev-server` 运行 `build/webpack.demo.js`
 
