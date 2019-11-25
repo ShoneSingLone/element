@@ -80,6 +80,7 @@ import { ElPageHeader } from './page-header'
 import { ElAvatar } from './avatar'
 import { ElRegion } from './region'
 import { ElDrawer } from './drawer'
+import { ElPopconfirm } from './popconfirm'
 
 export interface InstallationOptions {
   locale: any,
@@ -344,3 +345,6 @@ export class Region extends ElRegion { }
 
 /** Drawer Component */
 export class Drawer extends ElDrawer { }
+
+/** Popconfirm Component */
+export class Popconfirm extends ElPopconfirm { }

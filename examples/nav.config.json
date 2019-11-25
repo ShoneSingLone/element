@@ -249,6 +249,10 @@
               "title": "Popover 弹出框"
             },
             {
+              "path": "/popconfirm",
+              "title": "Popconfirm 气泡确认框"
+            },
+            {
               "path": "/card",
               "title": "Card 卡片"
             },
@@ -549,6 +553,10 @@
             {
               "path": "/popover",
               "title": "Popover"
+            },
+            {
+              "path": "/popconfirm",
+              "title": "Popconfirm"
             },
             {
               "path": "/card",
@@ -857,6 +865,10 @@
               "title": "Popover"
             },
             {
+              "path": "/popconfirm",
+              "title": "Popconfirm"
+            },
+            {
               "path": "/card",
               "title": "Card"
             },
@@ -1161,6 +1173,10 @@
             {
               "path": "/popover",
               "title": "Popover"
+            },
+            {
+              "path": "/popconfirm",
+              "title": "Popconfirm"
             },
             {
               "path": "/card",
