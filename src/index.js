@@ -82,7 +82,6 @@ import InfiniteScroll from '../packages/infinite-scroll/index.js';
 import PageHeader from '../packages/page-header/index.js';
 import CascaderPanel from '../packages/cascader-panel/index.js';
 import Avatar from '../packages/avatar/index.js';
-import Region from '../packages/region/index.js';
 import Drawer from '../packages/drawer/index.js';
 import Popconfirm from '../packages/popconfirm/index.js';
 import locale from 'element-ui/src/locale';
@@ -166,7 +165,6 @@ const components = [
   PageHeader,
   CascaderPanel,
   Avatar,
-  Region,
   Drawer,
   Popconfirm,
   CollapseTransition
@@ -291,7 +289,6 @@ export default {
   PageHeader,
   CascaderPanel,
   Avatar,
-  Region,
   Drawer,
   Popconfirm
 };
