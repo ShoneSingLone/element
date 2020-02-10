@@ -39,8 +39,7 @@ export default {
       return this.closable || this.$parent.closable;
     },
     active() {
-      const active =
-        this.$parent.currentName === (this.id || this.name || this.index);
+      const active = this.$parent.currentName === (this.name || this.index);
       if (active) {
         this.loaded = true;
       }
