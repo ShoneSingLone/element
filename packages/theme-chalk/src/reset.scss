@@ -1,79 +1,80 @@
-@import 'common/var';
+@import "common/var";
 
 body {
-  font-family: "Microsoft YaHei","微软雅黑","Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB",Arial,sans-serif;
-  font-weight: 400;
-  font-size: $--font-size-base;
-  color: $--color-black;
-  -webkit-font-smoothing: antialiased;
+    // font-family: "Microsoft YaHei","微软雅黑","Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB",Arial,sans-serif;
+    font-family: "Microsoft YaHei","微软雅黑", "Hiragino Sans GB", "PingFang SC","Helvetica Neue", Helvetica,  SimSun, sans-serif;
+    font-weight: 400;
+    font-size: $--font-size-base;
+    color: $--color-black;
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
-  color: $--color-primary;
-  text-decoration: none;
+    color: $--color-primary;
+    text-decoration: none;
 
-  &:hover,
-  &:focus {
-    color: mix($--color-white, $--color-primary, $--button-hover-tint-percent);
-  }
+    &:hover,
+    &:focus {
+        color: mix($--color-white, $--color-primary, $--button-hover-tint-percent);
+    }
 
-  &:active {
-    color: mix($--color-black, $--color-primary, $--button-active-shade-percent);
-  }
+    &:active {
+        color: mix($--color-black, $--color-primary, $--button-active-shade-percent);
+    }
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $--color-text-regular;
-  font-weight: inherit;
+    color: $--color-text-regular;
+    font-weight: inherit;
 
-  &:first-child {
-    margin-top: 0;
-  }
+    &:first-child {
+        margin-top: 0;
+    }
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+    &:last-child {
+        margin-bottom: 0;
+    }
 }
 
 h1 {
-  font-size: #{$--font-size-base + 6px};
+    font-size: #{$--font-size-base + 6px};
 }
 
 h2 {
-  font-size: #{$--font-size-base + 4px};
+    font-size: #{$--font-size-base + 4px};
 }
 
 h3 {
-  font-size: #{$--font-size-base + 2px};
+    font-size: #{$--font-size-base + 2px};
 }
 
 h4, h5, h6, p {
-  font-size: inherit;
+    font-size: inherit;
 }
 
 p {
-  line-height: 1.8;
+    line-height: 1.8;
 
-  &:first-child {
-    margin-top: 0;
-  }
+    &:first-child {
+        margin-top: 0;
+    }
 
-  &:last-child {
-    margin-bottom: 0;
-  }
+    &:last-child {
+        margin-bottom: 0;
+    }
 }
 
 sup, sub {
-  font-size: #{$--font-size-base - 1px};
+    font-size: #{$--font-size-base - 1px};
 }
 
 small {
-  font-size: #{$--font-size-base - 2px};
+    font-size: #{$--font-size-base - 2px};
 }
 
 hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 0;
-  border-top: 1px solid #eeeeee;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eeeeee;
 }

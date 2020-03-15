@@ -15,8 +15,7 @@ export default {
     parentMenu() {
       let parent = this.$parent;
       while (
-        parent &&
-        ['ElMenu', 'ElSubmenu'].indexOf(parent.$options.componentName) === -1
+        parent && ['ElMenu', 'ElSubmenu'].indexOf(parent.$options.componentName) === -1
       ) {
         parent = parent.$parent;
       }
@@ -38,7 +37,9 @@ export default {
           parent = parent.$parent;
         }
       }
-      return {paddingLeft: padding + 'px'};
+      return {
+        paddingLeft: padding + 'px'
+      };
     }
   }
 };
