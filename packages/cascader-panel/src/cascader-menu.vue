@@ -6,11 +6,8 @@ import { generateId } from 'element-ui/src/utils/util';
 
 export default {
   name: 'ElCascaderMenu',
-
   mixins: [Locale],
-
   inject: ['panel'],
-
   components: {
     ElScrollbar,
     CascaderNode

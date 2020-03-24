@@ -1,5 +1,26 @@
 <template>
   <el-row :gutter="20">
+    <el-col :span="24">
+      <el-cascader
+        v-model="ruleForm.regionValue"
+        clearable
+        filterable
+        :options="regionData"
+        style="width:50%;"
+      />
+    </el-col>
+    <el-col :span="24">
+      <el-city
+        v-model="ruleForm.regionValue"
+        clearable
+        filterable
+        :options="regionData"
+        style="width:60%;"
+      />
+    </el-col>
+    <el-col :span="24">{{ruleForm.regionValue}}</el-col>
+  </el-row>
+  <!-- <el-row :gutter="20">
     <el-col :span="24">&nbsp;{{ruleForm.regionValue}}</el-col>
     <el-col :span="24">
       <el-form
@@ -15,8 +36,8 @@
             ref="region"
             v-model="ruleForm.regionValue"
             clearable
-            style="width:100%;"
             :options="regionData"
+            style="width:100%;"
           ></el-region>
         </el-form-item>
         <div>
@@ -31,7 +52,7 @@
         </el-form-item>
       </el-form>
     </el-col>
-  </el-row>
+  </el-row>-->
 </template>
 
 <script>

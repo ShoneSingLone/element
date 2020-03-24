@@ -81,6 +81,7 @@ import { ElAvatar } from './avatar'
 import { ElRegion } from './region'
 import { ElDrawer } from './drawer'
 import { ElPopconfirm } from './popconfirm'
+import { ElCity } from './city'
 
 export interface InstallationOptions {
   locale: any,
@@ -348,3 +349,6 @@ export class Drawer extends ElDrawer { }
 
 /** Popconfirm Component */
 export class Popconfirm extends ElPopconfirm { }
+
+/** City Component */
+export class City extends ElCity {}

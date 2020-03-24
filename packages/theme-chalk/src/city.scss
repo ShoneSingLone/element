@@ -1,0 +1,63 @@
+@import "mixins/mixins";
+@import "common/var";
+
+.city-origin-panel {
+    height: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.el-cascader-panel.city-panel {
+    // color: red;
+    // outline: 1px solid red;
+    width: 546px;
+    max-height: 200px;
+    padding: 16px;
+    overflow: auto;
+
+    .el-tabs__item:hover {
+        background-color: $--color-primary;
+        color: white;
+    }
+
+    > .el-tabs {
+        width: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+
+        .el-tabs__content {
+            flex: 1;
+
+            .el-tab-pane {
+                height: 100%;
+
+                > .el-scrollbar {
+                    height: 100%;
+
+                    > .el-scrollbar__wrap {
+                        overflow-x: hidden;
+
+                        > .el-scrollbar__view {
+                            > .item {
+                                display: inline-block;
+                                padding: 8px;
+
+                                @mixin isActive {
+                                    cursor: pointer;
+                                    background-color: $--color-primary;
+                                    color: white;
+                                }
+
+                                &:hover, &.is-active {
+                                    @include isActive;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include b(city) {}

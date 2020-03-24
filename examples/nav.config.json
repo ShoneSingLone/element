@@ -303,6 +303,10 @@
             {
               "path": "/drawer",
               "title": "Drawer 抽屉"
+            },
+            {
+              "path": "/city",
+              "title": "City"
             }
           ]
         }
@@ -609,6 +613,10 @@
             {
               "path": "/drawer",
               "title": "Drawer"
+            },
+            {
+              "path": "/city",
+              "title": "City"
             }
           ]
         }
@@ -923,6 +931,10 @@
             {
               "path": "/drawer",
               "title": "Drawer"
+            },
+            {
+              "path": "/city",
+              "title": "City"
             }
           ]
         }
@@ -1233,6 +1245,10 @@
             {
               "path": "/drawer",
               "title": "Drawer"
+            },
+            {
+              "path": "/city",
+              "title": "City"
             }
           ]
         }
