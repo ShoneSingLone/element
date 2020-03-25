@@ -16,8 +16,8 @@
     overflow: auto;
 
     .el-tabs__item:hover {
-        background-color: $--color-primary;
-        color: white;
+        // background-color: $--color-primary;
+        // color: white;
     }
 
     > .el-tabs {
@@ -44,8 +44,8 @@
 
                                 @mixin isActive {
                                     cursor: pointer;
-                                    background-color: $--color-primary;
-                                    color: white;
+                                    // background-color: $--color-primary;
+                                    // color: white;
                                 }
 
                                 &:hover, &.is-active {

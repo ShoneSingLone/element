@@ -12,9 +12,11 @@
     @click="() => toggleDropDownVisible(readonly ? undefined : true)"
     @keydown="handleKeyDown"
   >
+    value: {{value}}
+    <br />
     typeof checkedValue:{{typeof checkedValue}}
-    <br/>
-     typeof value : {{typeof value}}
+    <br />
+    typeof value : {{typeof value}}
     <br />
     checkedValue===value : {{checkedValue===value}}
     <br />
@@ -99,7 +101,6 @@
             @expand-change="handleExpandChange"
             @close="toggleDropDownVisible(false)"
           ></el-cascader-panel>
-          {{value}}
           <!-- city-panel -->
           <div class="el-cascader-panel city-panel">
             <el-tabs v-model="cityTabName" @tab-click="cityHandleClick">
@@ -110,12 +111,33 @@
                 :key="index"
               >
                 <el-scrollbar>
-                  <span
-                    :class="['item',{'is-active':cityCheckValue(secondItem.value)}]"
+                  <label
+                    :class="['el-radio item',{'is-checked':cityCheckValue(secondItem.value)}]"
                     v-for="(secondItem, secondIndex) in item"
                     :key="secondIndex"
-                    @click="cityHandleItemClick(secondItem,index)"
-                  >{{secondItem.label}}</span>
+                    @click="cityRadioLableClick(secondItem,index)"
+                    role="radio"
+                    aria-checked="true"
+                    tabindex="0"
+                  >
+                    <span
+                      :class="['el-radio__input',{'is-checked':cityCheckValue(secondItem.value)}]"
+                      @click.stop="cityRadioClick(secondItem,index)"
+                    >
+                      <span class="el-radio__inner"></span>
+                      <input
+                        type="radio"
+                        aria-hidden="true"
+                        tabindex="-1"
+                        class="el-radio__original"
+                        value="1"
+                      />
+                    </span>
+                    <span class="el-radio__label">
+                      {{secondItem.label}}
+                      <!---->
+                    </span>
+                  </label>
                 </el-scrollbar>
               </el-tab-pane>
             </el-tabs>

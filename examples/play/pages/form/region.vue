@@ -15,6 +15,7 @@
         clearable
         filterable
         :options="regionData"
+        :props="{ checkStrictly: true }"
         style="width:60%;"
       />
     </el-col>

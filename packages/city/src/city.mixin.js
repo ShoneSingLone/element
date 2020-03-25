@@ -28,6 +28,7 @@ export const cityMixin = {
 
       if (!isEqual(val, value) || isUndefined(value)) {
         this.computePresentContent();
+        console.log('isMultiple', checkStrictly, multiple);
         // hide dropdown when single mode
         if (!multiple && !checkStrictly && dropDownVisible) {
           this.toggleDropDownVisible(false);
@@ -44,9 +45,22 @@ export const cityMixin = {
       this.cityData = [];
       this.cityTabName = '0';
     },
-    cityHandleItemClick(item, tabIndex) {
+    cityRadioClick(item, tabIndex) {
+      console.log('cityRadioClick', item);
+
+      this.cityTabs = this.cityTabs.slice(0, Number(this.cityTabName) + 1);
+      if (Array.isArray(this.checkedValue)) {
+        this.checkedValue[tabIndex] = item.value;
+        this.checkedValue = JSON.parse(JSON.stringify(this.checkedValue));
+      } else {
+        this.checkedValue = item.value;
+      }
+      this.toggleDropDownVisible(false);
+    },
+    /*  */
+    cityRadioLableClick(item, tabIndex /* 当前tab级别 */) {
       console.table([
-        ['cityHandleItemClick', this.checkedValue],
+        ['cityRadioLableClick', this.checkedValue],
         ['item.value', item.value],
         ['tabIndex', tabIndex]
       ]);
@@ -63,9 +77,10 @@ export const cityMixin = {
       } else {
         if (Array.isArray(this.checkedValue)) {
           this.checkedValue[tabIndex] = item.value;
+          this.checkedValue = JSON.parse(JSON.stringify(this.checkedValue));
+        } else {
+          this.checkedValue = item.value;
         }
-        console.log('cityHandleItemClick', this.value, this.checkedValue);
-        this.checkedValue = JSON.parse(JSON.stringify(this.checkedValue));
         this.toggleDropDownVisible(false);
       }
     },
