@@ -18,7 +18,7 @@
         style="width:60%;"
       />
     </el-col>
-    <el-col :span="24">{{ruleForm.regionValue}}</el-col>
+    <el-col :span="24">ruleForm.regionValue:{{ruleForm.regionValue}}</el-col>
   </el-row>
   <!-- <el-row :gutter="20">
     <el-col :span="24">&nbsp;{{ruleForm.regionValue}}</el-col>

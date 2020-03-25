@@ -12,7 +12,17 @@
     @click="() => toggleDropDownVisible(readonly ? undefined : true)"
     @keydown="handleKeyDown"
   >
-    {{checkedValue}}{{inputValue}}
+    typeof checkedValue:{{typeof checkedValue}}
+    <br/>
+     typeof value : {{typeof value}}
+    <br />
+    checkedValue===value : {{checkedValue===value}}
+    <br />
+    value{{value}}
+    <br />
+    checkedValue{{checkedValue}}
+    <br />
+    inputValue: {{inputValue}}
     <el-input
       ref="input"
       v-model="multiple ? presentText : inputValue"
@@ -89,17 +99,9 @@
             @expand-change="handleExpandChange"
             @close="toggleDropDownVisible(false)"
           ></el-cascader-panel>
+          {{value}}
           <!-- city-panel -->
-          <div
-            class="el-cascader-panel city-panel"
-            v-model="checkedValue"
-            :options="options"
-            :props="config"
-            :border="false"
-            :render-label="$scopedSlots.default"
-            @expand-change="handleExpandChange"
-            @close="toggleDropDownVisible(false)"
-          >
+          <div class="el-cascader-panel city-panel">
             <el-tabs v-model="cityTabName" @tab-click="cityHandleClick">
               <el-tab-pane
                 :label="cityOrder[index]"
@@ -168,7 +170,7 @@ import ElCascaderPanel from 'element-ui/packages/cascader-panel';
 import AriaUtils from 'element-ui/src/utils/aria-utils';
 import { t } from 'element-ui/src/locale';
 import { isEqual, isEmpty, kebabCase } from 'element-ui/src/utils/util';
-import { isUndefined, isFunction } from 'element-ui/src/utils/types';
+import { isFunction } from 'element-ui/src/utils/types';
 import { isDef } from 'element-ui/src/utils/shared';
 import {
   addResizeListener,
@@ -278,7 +280,7 @@ export default {
   data() {
     return {
       dropDownVisible: false,
-      checkedValue: this.value || null,
+      checkedValue: JSON.parse(JSON.stringify(this.value)) || null,
       inputHover: false,
       inputValue: null,
       presentText: null,
@@ -352,26 +354,15 @@ export default {
       this.computePresentContent();
     },
     value(val) {
+      console.log('watch value', val);
       if (!isEqual(val, this.checkedValue)) {
         this.checkedValue = val;
         this.computePresentContent();
       }
     },
     checkedValue(val) {
-      const { value, dropDownVisible } = this;
-      const { checkStrictly, multiple } = this.config;
-
-      if (!isEqual(val, value) || isUndefined(value)) {
-        this.computePresentContent();
-        // hide dropdown when single mode
-        if (!multiple && !checkStrictly && dropDownVisible) {
-          this.toggleDropDownVisible(false);
-        }
-
-        this.$emit('input', val);
-        this.$emit('change', val);
-        this.dispatch('ElFormItem', 'el.form.change', [val]);
-      }
+      console.log('watch checkedValue', val);
+      this.cityHandleCheckedValueChange.call(this, val);
     },
     options: {
       handler: function() {
@@ -444,8 +435,13 @@ export default {
         }
       };
     },
-    toggleDropDownVisible(visible) {
+    toggleDropDownVisible(visible, oldVisible) {
       if (this.isDisabled) return;
+
+      if (visible && !oldVisible) {
+        console.log('visible&&!oldVisible');
+        this.cityClear();
+      }
 
       const { dropDownVisible } = this;
       const { input } = this.$refs;
@@ -501,6 +497,7 @@ export default {
     handleClear() {
       this.presentText = '';
       this.panel.clearCheckedNodes();
+      this.cityClear();
     },
     handleExpandChange(value) {
       this.$nextTick(this.updatePopper.bind(this));
