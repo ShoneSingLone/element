@@ -21,39 +21,6 @@
     </el-col>
     <el-col :span="24">ruleForm.regionValue:{{ruleForm.regionValue}}</el-col>
   </el-row>
-  <!-- <el-row :gutter="20">
-    <el-col :span="24">&nbsp;{{ruleForm.regionValue}}</el-col>
-    <el-col :span="24">
-      <el-form
-        :model="ruleForm"
-        :rules="rules"
-        ref="ruleForm"
-        label-width="100px"
-        class="demo-ruleForm"
-      >
-        <el-input v-model="ruleForm.regionValue"></el-input>
-        <el-form-item label="活动区域" prop="regionValue">
-          <el-region
-            ref="region"
-            v-model="ruleForm.regionValue"
-            clearable
-            :options="regionData"
-            style="width:100%;"
-          ></el-region>
-        </el-form-item>
-        <div>
-          {{ruleForm.region.toString()}}
-        </div>
-        <el-form-item label="活动区域" prop="region">
-          <el-cascader :options="regionData" v-model="ruleForm.region" clearable></el-cascader>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
-        </el-form-item>
-      </el-form>
-    </el-col>
-  </el-row>-->
 </template>
 
 <script>

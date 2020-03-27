@@ -12,7 +12,7 @@
     @click="() => toggleDropDownVisible(readonly ? undefined : true)"
     @keydown="handleKeyDown"
   >
-    value: {{value}}
+<!--     value: {{value}}
     <br />
     typeof checkedValue:{{typeof checkedValue}}
     <br />
@@ -24,7 +24,7 @@
     <br />
     checkedValue{{checkedValue}}
     <br />
-    inputValue: {{inputValue}}
+    inputValue: {{inputValue}} -->
     <el-input
       ref="input"
       v-model="multiple ? presentText : inputValue"
@@ -90,6 +90,7 @@
         :class="['el-popper', 'el-cascader__dropdown', popperClass]"
       >
         <template v-show="!filtering">
+          <!-- origin -->
           <el-cascader-panel
             class="city-origin-panel"
             ref="panel"
@@ -100,7 +101,8 @@
             :render-label="$scopedSlots.default"
             @expand-change="handleExpandChange"
             @close="toggleDropDownVisible(false)"
-          ></el-cascader-panel>
+          />
+          <!-- origin -->
           <!-- city-panel -->
           <div class="el-cascader-panel city-panel">
             <el-tabs v-model="cityTabName" @tab-click="cityHandleClick">
@@ -111,33 +113,39 @@
                 :key="index"
               >
                 <el-scrollbar>
-                  <label
-                    :class="['el-radio item',{'is-checked':cityCheckValue(secondItem.value)}]"
+                  <span
+                    class="radio-span"
                     v-for="(secondItem, secondIndex) in item"
                     :key="secondIndex"
-                    @click="cityRadioLableClick(secondItem,index)"
-                    role="radio"
-                    aria-checked="true"
-                    tabindex="0"
                   >
-                    <span
-                      :class="['el-radio__input',{'is-checked':cityCheckValue(secondItem.value)}]"
+                    <label
+                      :class="['el-radio item',{'is-checked':cityCheckValue(secondItem.value)}]"
                       @click.stop="cityRadioClick(secondItem,index)"
+                      role="radio"
+                      aria-checked="true"
+                      tabindex="0"
                     >
-                      <span class="el-radio__inner"></span>
-                      <input
-                        type="radio"
-                        aria-hidden="true"
-                        tabindex="-1"
-                        class="el-radio__original"
-                        value="1"
-                      />
-                    </span>
-                    <span class="el-radio__label">
+                      <span
+                        :class="['el-radio__input',{'is-checked':cityCheckValue(secondItem.value)}]"
+                      >
+                        <span class="el-radio__inner"></span>
+                        <input
+                          type="radio"
+                          aria-hidden="true"
+                          tabindex="-1"
+                          class="el-radio__original"
+                          value="1"
+                        />
+                      </span>
+                    </label>
+                    <span
+                      :class="['radio__label',{'is-checked':cityCheckValue(secondItem.value)}]"
+                      @click.stop="cityRadioLableClick(secondItem,index)"
+                    >
                       {{secondItem.label}}
                       <!---->
                     </span>
-                  </label>
+                  </span>
                 </el-scrollbar>
               </el-tab-pane>
             </el-tabs>

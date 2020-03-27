@@ -18,6 +18,7 @@
     .el-tabs__item:hover {
         // background-color: $--color-primary;
         // color: white;
+   
     }
 
     > .el-tabs {
@@ -38,18 +39,34 @@
                         overflow-x: hidden;
 
                         > .el-scrollbar__view {
-                            > .item {
+                            // outline: 1px solid red;
+
+                            .radio-span {
                                 display: inline-block;
-                                padding: 8px;
+                                padding: 10px 10px 10px 0;
 
                                 @mixin isActive {
                                     cursor: pointer;
                                     // background-color: $--color-primary;
-                                    // color: white;
+                                    color: $--color-primary;
                                 }
 
-                                &:hover, &.is-active {
+                                &:hover, &.is-active, .is-checked {
                                     @include isActive;
+                                }
+
+                                > .item {
+                                    display: inline-block;
+                                    padding: 8px;
+
+                                    &.el-radio {
+                                        margin-right: 0;
+                                        padding: 0;
+                                    }
+                                }
+
+                                > .el-radio__label {
+                                    padding-left: 0;
                                 }
                             }
                         }

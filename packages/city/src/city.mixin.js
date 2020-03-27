@@ -47,14 +47,8 @@ export const cityMixin = {
     },
     cityRadioClick(item, tabIndex) {
       console.log('cityRadioClick', item);
-
       this.cityTabs = this.cityTabs.slice(0, Number(this.cityTabName) + 1);
-      if (Array.isArray(this.checkedValue)) {
-        this.checkedValue[tabIndex] = item.value;
-        this.checkedValue = JSON.parse(JSON.stringify(this.checkedValue));
-      } else {
-        this.checkedValue = item.value;
-      }
+      this.checkedValue = item.value;
       this.toggleDropDownVisible(false);
     },
     /*  */
