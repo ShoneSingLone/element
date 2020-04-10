@@ -105,6 +105,10 @@
               "title": "Cascader 级联选择器"
             },
             {
+              "path": "/city",
+              "title": "City 城市级联选择"
+            },
+            {
               "path": "/switch",
               "title": "Switch 开关"
             },
@@ -303,10 +307,6 @@
             {
               "path": "/drawer",
               "title": "Drawer 抽屉"
-            },
-            {
-              "path": "/city",
-              "title": "City"
             }
           ]
         }
@@ -417,6 +417,10 @@
             {
               "path": "/cascader",
               "title": "Cascader"
+            },
+            {
+              "path": "/city",
+              "title": "City 城市级联选择"
             },
             {
               "path": "/switch",

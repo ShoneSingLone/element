@@ -7,9 +7,17 @@ import {
 
 export const cityMixin = {
   data() {
+    console.log(this, 'this.config');
+
+    var cityOrder = ['省/直辖市级别', '市/地区级别', '区县'];
+
+    if (this.props && this.props.cityOrder) {
+      cityOrder = this.props.cityOrder;
+    }
+
     return {
       cityData: [],
-      cityOrder: ['省/直辖市级别', '市/地区级别', '区县'],
+      cityOrder,
       cityTabName: '0',
       cityTabs: [this.options]
     };

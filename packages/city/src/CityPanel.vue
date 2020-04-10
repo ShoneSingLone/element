@@ -67,7 +67,7 @@ const getSibling = (el, distance) => {
 
 const getMenuIndex = (el, distance) => {
   if (!el) return;
-  const pieces = el.id.split('-');
+  const pieces = l.id.split('-');
   return Number(pieces[pieces.length - 2]);
 };
 

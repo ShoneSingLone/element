@@ -15,7 +15,7 @@
         clearable
         filterable
         :options="regionData"
-        :props="{ checkStrictly: true }"
+        :props="{ checkStrictly: true ,cityOrder:['A','B','C']}"
         style="width:60%;"
       />
     </el-col>
@@ -26,9 +26,14 @@
 <script>
 import regionData from "../../assets/region";
 export default {
+  mounted() {
+    setTimeout(() => {
+      this.regionData = regionData;
+    }, 5000);
+  },
   data() {
     return {
-      regionData,
+      regionData: [],
       ruleForm: {
         regionValue: "140726",
         // regionValue: ["140000", "140700", "140726"],
